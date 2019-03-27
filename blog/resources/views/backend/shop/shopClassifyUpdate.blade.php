@@ -10,71 +10,49 @@
 <body>
 
 <h1>
-<span class="action-span"><a href="category.php?act=list">商品分类</a></span>
-<span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加分类 </span>
+<span class="action-span"><a href="{{url('backend/shopClassify')}}">商品分类</a></span>
+<span class="action-span1"><a href="{{url('backend/main')}}">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> -修改分类 </span>
 <div style="clear:both"></div>
 </h1>
 <!-- start add new category form -->
 <div class="main-div">
-  <form action="category.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+  <form action="" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+	@csrf
 	 <table width="100%" id="general-table">
 		<tbody>
+			<input type="hidden" name="id" value="{{$data[0]->id}}">
 			<tr>
 				<td class="label">分类名称:</td>
-				<td><input type="text" name="cat_name" maxlength="20" value="" size="27"> <font color="red">*</font></td>
+				<td><input type="text" name="name" maxlength="20" size="27" value="{{$data[0]->name}}"> <font color="red">*</font></td>
+			</tr>
+			<tr>
+				<td class="label">商品数量</td>
+				<td><input type="number" name="number" id="" value="$data[0]->number"></td>
 			</tr>
 			<tr>
 				<td class="label">上级分类:</td>
 				<td>
 					<select name="parent_id">
-						<option value="0">顶级分类</option>
-						<option value="1">手机类型</option>
-						<option value="5">&nbsp;&nbsp;&nbsp;&nbsp;双模手机</option>
-						<option value="2">&nbsp;&nbsp;&nbsp;&nbsp;CDMA手机</option>
-						<option value="3">&nbsp;&nbsp;&nbsp;&nbsp;GSM手机</option>
-						<option value="4">&nbsp;&nbsp;&nbsp;&nbsp;3G手机</option>
-						<option value="12">充值卡</option>
-						<option value="15">&nbsp;&nbsp;&nbsp;&nbsp;联通手机充值卡</option>
-						<option value="13">&nbsp;&nbsp;&nbsp;&nbsp;小灵通/固话充值卡</option>
-						<option value="14">&nbsp;&nbsp;&nbsp;&nbsp;移动手机充值卡</option>
-						<option value="6">手机配件</option>
-						<option value="8">&nbsp;&nbsp;&nbsp;&nbsp;耳机</option>
-						<option value="9">&nbsp;&nbsp;&nbsp;&nbsp;电池</option>
-						<option value="11">&nbsp;&nbsp;&nbsp;&nbsp;读卡器和内存卡</option>
-						<option value="7">&nbsp;&nbsp;&nbsp;&nbsp;充电器</option>          
+						@foreach($classify as $key => $val)
+
+						<option value="{{$val->id}}">
+									{{$val->name}}
+										 
+								
+						</option>
+						@endforeach
 					</select>
 				</td>
 			</tr>
 
-			<tr id="measure_unit">
-				<td class="label">数量单位:</td>
-				<td><input type="text" name="measure_unit" value="" size="12"></td>
-			</tr>
 			<tr>
 				<td class="label">排序:</td>
-				<td><input type="text" name="sort_order" value="50" size="15"></td>
-			</tr>
-
-			<tr>
-				<td class="label">是否显示:</td>
-				<td><input type="radio" name="is_show" value="1" checked="true"> 是<input type="radio" name="is_show" value="0"> 否  </td>
-			</tr>
-			<tr>
-				<td class="label">是否显示在导航栏:</td>
-				<td><input type="radio" name="show_in_nav" value="1"> 是  <input type="radio" name="show_in_nav" value="0" checked="true"> 否    </td>
-			</tr>
-			<tr>
-				<td class="label">设置为首页推荐:</td>
-				<td>
-					<input type="checkbox" name="cat_recommend[]" value="1"> 精品          
-					<input type="checkbox" name="cat_recommend[]" value="2"> 最新          
-					<input type="checkbox" name="cat_recommend[]" value="3"> 热门       
-				</td>
+				<td><input type="text" name="sort" size="15" value="{{$data[0]->sort}}"></td>
 			</tr>
       <tr>
         <td class="label">分类描述:</td>
         <td>
-          <textarea name="cat_desc" rows="6" cols="48"></textarea>
+          <textarea name="content" rows="6" cols="48" placeholder="{{$data[0]->content}}" value="{{$data[0]->content}}"></textarea>
         </td>
       </tr>
       </tbody></table>
@@ -82,17 +60,9 @@
         <input type="submit" value=" 确定 ">
         <input type="reset" value=" 重置 ">
       </div>
-    <input type="hidden" name="act" value="insert">
-    <input type="hidden" name="old_cat_name" value="">
-    <input type="hidden" name="cat_id" value="">
   </form>
 </div>
 
-
-
-<div id="footer">
-	版权所有 &copy; 2006-2013 软工教育 - 高级PHP - 
-</div>
 
 </div>
 

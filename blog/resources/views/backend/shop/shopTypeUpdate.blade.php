@@ -10,35 +10,35 @@
 
 <h1>
 <span class="action-span"><a href="{{url('backend/shopType')}}">商品类型列表</a></span>
-<span class="action-span1"><a href="{{url('backend/main')}}">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 新建商品类型 </span>
+<span class="action-span1"><a href="{{url('backend/main')}}">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 修改商品类型 </span>
 <div style="clear:both"></div>
 </h1>
 
 <div class="main-div">
   <form action="" method="post" name="theForm" onsubmit="return validate();">
+  @csrf
     <table cellspacing="1" cellpadding="3" width="100%">
+      <input type="hidden" name="id" value="{{$data[0]->id}}">
       <tbody><tr>
         <td class="label">商品类型名称:</td>
-        <td><input type="text" name="cat_name" value="" size="40">
+        <td><input type="text" name="name" value="{{$data[0]->name}}" size="40">
         <span class="require-field">*</span></td>
       </tr>
-      <tr style="display:none">
+      <tr>
         <td class="label">状态:</td>
-        <td><input type="radio" name="enabled" value="0">&nbsp;禁用&nbsp;<input type="radio" name="enabled" value="1" checked="">&nbsp;启用&nbsp;</td>
-      </tr>
-      <tr style="display:none">
-        <td class="label"><a href="javascript:showNotice('noticeAttrGroups');" title="点击此处查看提示信息"><img src="images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 属性分组:</td>
         <td>
-          <textarea name="attr_group" rows="5" cols="40"></textarea><br>
-          <span class="notice-span" style="display:block" id="noticeAttrGroups">每行一个商品属性组。排序也将按照自然顺序排序。</span>
+        @if($data[0]->status == 1)
+        <input type="radio" name="status" value="0">&nbsp;禁用&nbsp;<input type="radio" name="status" value="1" checked="">&nbsp;启用&nbsp;
+        @else
+        <input type="radio" name="status" value="0" checked="">&nbsp;禁用&nbsp;<input type="radio" name="status" value="1" >&nbsp;启用&nbsp;
+        @endif
         </td>
+
       </tr>
       <tr align="center">
         <td colspan="2">
-          <input type="hidden" name="cat_id" value="">
           <input type="submit" value=" 确定 " class="button">
           <input type="reset" value=" 重置 " class="button">
-          <input type="hidden" name="act" value="insert">
         </td>
       </tr>
     </tbody></table>

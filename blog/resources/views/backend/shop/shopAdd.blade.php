@@ -665,7 +665,7 @@
 <div id="footer">
 	版权所有 &copy; 2006-2013 
 </div>
-<script type="text/javascript" src="js/tab.js"></script>
+<script type="text/javascript" src="{{asset('backends/js/tab.js')}}"></script>
 <script type="text/javascript">
 	function addImg(obj){
       var src  = obj.parentNode.parentNode;

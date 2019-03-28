@@ -68,6 +68,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'backend'],function(){
     Route::any('shopAttrUpdate','ShopController@shopAttrUpdate');
     //删除商品属性
     Route::any('shopAttrDel','ShopController@shopAttrDel');
+
+    Route::get('getAttr','ShopController@getAttr');
     //商品模块----------------------------------------------------------------------------------
     
 

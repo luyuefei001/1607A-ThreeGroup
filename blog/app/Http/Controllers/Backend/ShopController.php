@@ -12,7 +12,86 @@ class ShopController extends Controller
      //添加新商品
      public function shopAdd()
      {
-         return view('backend.shop.shopAdd');
+        if($_POST){
+            $data = $_POST;
+            unset($data['_token']);
+         
+            // dd($data);
+            if(!$_FILES['shopImg']['error'] == 4){
+               //获取要添加的品牌logo信息
+               $file = $_FILES['shopImg'];
+               if($file['error'] > 0){
+                  echo "文件上传失败";
+                  exit();
+               }
+               //文件的存储地址
+               $filename = 'backends/images' .'/'. time(). $file['name']; 
+               //判断该文件是否存在
+               if(file_exists($filename)){
+                  echo "该文件已存在";
+                  exit();
+                  
+               }
+               //文件名如果是中文名 转换编码格式
+               $filename = iconv('UTF-8','gb2312',$filename);
+               if(move_uploaded_file($file['tmp_name'],$filename)){
+                  $data['shop_img'] = $filename;
+               }
+               
+            }
+
+            //添加相关信息到 good表
+            $data['values'] = '';
+               foreach ($data as $key => $value) {
+                  
+                     //如果该数组中还有数组
+                     if(is_array($value)){
+                          $k = substr($key,strpos($key,'r')+1);
+                          $v = implode('-',$value);
+                          $data['values'] .=  $k . ':' . $v .'||';
+                          //将该数组清除
+                          unset($data[$key]);
+                        //   die;
+                     }
+               }
+               //取出商品属性值两边的||
+               $data['values'] = trim($data['values'],'||');
+               //商品添加的时间
+               $data['createDate'] = time();
+               //进行添加
+               if($id = DB::table('ecs_good')->insertGetId($data)){
+                     //生成商品的货号
+                     // print_r( 'ecs'. ($id+10000));
+                     // exit();
+                     $shopNumbers = 'ecs'. (intval($id)+intval(10000));
+                     //将商品的货号存储进去
+                     DB::table('ecs_good')->where('shop_id',$id)->update(['shopNumbers'=>$shopNumbers]);
+                     exit();
+               }
+               echo "商品添加失败";
+               exit();
+        }
+        //获取商品品牌的名称与id
+        $shopBrand = DB::select("select shopBrand_id,shopBrandName from `ecs_goodBrand`");
+
+        //获取商品分类的名称与id
+        $shopClassify = DB::table('ecs_goodClassify')->get();
+        $shopClassify = $this->getChild($shopClassify);
+        //将子级分类前面加 多个[*]
+        $shopClassify = $this->blank($shopClassify);
+
+        //获取商品类型的名称与id
+        $shopType = DB::select("select t_id,t_name from `ecs_goodType`");
+         return view('backend.shop.shopAdd',['shopBrand'=>$shopBrand,'shopClassify'=>$shopClassify,'shopType'=>$shopType]);
+     }
+
+     public function getAttr()
+     {
+        $type_id = $_GET['type_id'];
+      //   echo $type_id;
+        //查询goodAttr 表中 该type_id 的属性
+        $data = DB::select('select * from `ecs_goodAttr` where a_type_id ='.$type_id);
+        return json_encode($data);
      }
 
 
@@ -171,7 +250,7 @@ class ShopController extends Controller
      public function shopBrandUpdate()
      {
         if($_POST){
-           //接收要修改的信息
+            //接收要修改的信息
             $Info = $_POST;
             $id = $Info['shopBrand_id'];
             if(!$_FILES['brand_logo']['error'] == 4){
@@ -314,6 +393,8 @@ class ShopController extends Controller
             $t_id = $Info['a_type_id'];
             if(DB::table('ecs_goodAttr')->insert($Info))
             {
+               //给shopType 里面的 number + 1
+               DB::table('ecs_goodType')->where('t_id',$t_id)->update(['number'=>'number+1']);
                return redirect("backend/shopAttr?id=$t_id");
             }
             echo "添加属性失败";

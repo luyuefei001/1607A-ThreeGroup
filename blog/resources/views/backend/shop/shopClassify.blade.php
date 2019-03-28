@@ -21,7 +21,6 @@
 			<tbody>
 				<tr>
 					<th>分类名称</th>
-					<th>商品数量</th>
 					<th>是否显示</th>
 					<th>排序</th>
 					<th>操作</th>
@@ -32,7 +31,6 @@
 						<img src="images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:0em" onclick="rowClicked(this)">
 						<span><a href="goods.php?act=list&amp;cat_id=1">{{$val->name}}</a></span>
 					 </td>
-					<td width="10%">{{$val->number}}</td>
 					<td width="10%">
 					@if($val->status == 1)
 					<img src="{{asset('backends/images/yes.gif')}}" onclick="listTable.toggle(this, 'toggle_is_show', 1)">

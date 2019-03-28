@@ -234,7 +234,7 @@ class ShopController extends Controller
      public function shopType()
      {
          //获取商品类型信息
-         $data = DB::table('ecs_goodType')->orderBy('id','desc')->get();
+         $data = DB::table('ecs_goodType')->get();
          return view('backend.shop.shopType',['list'=>$data]);
      }
 
@@ -259,11 +259,11 @@ class ShopController extends Controller
      {
         if($_POST){
             $Info = $_POST;
-            $id = $Info['id'];
+            $id = $Info['t_id'];
             unset($Info['_token']);
             unset($Info['id']);
             //进行修改
-            $res = DB::table('ecs_goodType')->where('id',$id)->update($Info);
+            $res = DB::table('ecs_goodType')->where('t_id',$id)->update($Info);
             if($res){
                return redirect('backend/shopType');
             }
@@ -273,7 +273,7 @@ class ShopController extends Controller
          $id = $_GET['id'] ?? 1;
          // echo "$id";
          //获取该品牌的信息
-         $data = DB::table('ecs_goodType')->where(['id'=>$id])->get();
+         $data = DB::table('ecs_goodType')->where(['t_id'=>$id])->get();
          return view('backend.shop.shopTypeUpdate',['data'=>$data]);
      }
 
@@ -283,7 +283,7 @@ class ShopController extends Controller
          //进行删除操作
          $id = $_GET['id'];
          //   echo $id;
-         if(DB::table('ecs_goodType')->where('id',$id)->delete()){
+         if(DB::table('ecs_goodType')->where('t_id',$id)->delete()){
              return redirect('backend/shopType');
          }
          echo "删除失败";
@@ -294,27 +294,73 @@ class ShopController extends Controller
      //商品属性
      public function shopAttr()
      {
+        //获取商品类型的t_id
+        $id = $_GET['id'];
         //获取商品属性信息
-        $data = DB::table('ecs_goodType')->orderBy('id','desc')->get();
-        return view('backend.shop.shopAttr',['list'=>$data]);
+        $list = DB::select("select * from `ecs_goodType` as t join `ecs_goodAttr` as a on t.t_id = a.a_type_id where a.a_type_id = $id");
+      //   echo "<pre>";
+      //   var_dump($list);
+      //   exit();
+        return view('backend.shop.shopAttr',['list'=>$list]);
      }
 
      //添加商品属性
      public function shopAttrAdd()
      {
-        return view('backend.shop.shopAttrAdd');
+        if($_POST){
+            $Info = $_POST;
+            // dd($Info);
+            unset($Info['_token']);
+            $t_id = $Info['a_type_id'];
+            if(DB::table('ecs_goodAttr')->insert($Info))
+            {
+               return redirect("backend/shopAttr?id=$t_id");
+            }
+            echo "添加属性失败";
+            exit();
+        }
+        //获取商品类型信息
+        $data = DB::select('select t_name,t_id from `ecs_goodType`');
+        return view('backend.shop.shopAttrAdd',['data'=>$data]);
      }
 
      //修改商品属性
      public function shopAttrUpdate()
      {
-        return view('backend.shop.shopAttrUpdate');
+        if($_POST){
+            $Info = $_POST;
+            //获取a_id
+            $id = $Info['id'];
+            //获取t_id
+            $t_id = $Info['a_type_id'];
+            unset($Info['_token']);
+            unset($Info['id']);
+            if(DB::table('ecs_goodAttr')->where('a_id',$id)->update($Info)){
+               return redirect("backend/shopAttr?id=$t_id");
+            }
+            echo "商品属性修改失败";
+            exit();
+        }
+        //获取商品类型信息
+        $data = DB::select('select t_name,t_id from `ecs_goodType`');
+        $id = $_GET['id']; 
+        $list = DB::select('select * from `ecs_goodAttr` where a_id ='.$id);
+        return view('backend.shop.shopAttrUpdate',['data'=>$data,'list'=>$list]);
      }
 
      //删除商品属性
      public function shopAttrDel()
      {
         //进行删除操作
+        $id = $_GET['id'];
+        $t_id = $_GET['t_id'];
+        //   echo $id;
+        if(DB::table('ecs_goodAttr')->where('a_id',$id)->delete()){
+            return redirect("backend/shopType?id=$t_id");
+        }
+        echo "删除失败";
+        exit();
+
      }
      
  

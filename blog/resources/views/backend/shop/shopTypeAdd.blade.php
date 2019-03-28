@@ -20,12 +20,12 @@
     <table cellspacing="1" cellpadding="3" width="100%">
       <tbody><tr>
         <td class="label">商品类型名称:</td>
-        <td><input type="text" name="name" value="" size="40">
+        <td><input type="text" name="a_name" value="" size="40">
         <span class="require-field">*</span></td>
       </tr>
       <tr>
         <td class="label">状态:</td>
-        <td><input type="radio" name="status" value="0">&nbsp;禁用&nbsp;<input type="radio" name="status" value="1" checked="">&nbsp;启用&nbsp;</td>
+        <td><input type="radio" name="a_status" value="0">&nbsp;禁用&nbsp;<input type="radio" name="a_status" value="1" checked="">&nbsp;启用&nbsp;</td>
       </tr>
       <tr align="center">
         <td colspan="2">

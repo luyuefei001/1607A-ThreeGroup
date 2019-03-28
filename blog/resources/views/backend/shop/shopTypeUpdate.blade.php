@@ -18,19 +18,19 @@
   <form action="" method="post" name="theForm" onsubmit="return validate();">
   @csrf
     <table cellspacing="1" cellpadding="3" width="100%">
-      <input type="hidden" name="id" value="{{$data[0]->id}}">
+      <input type="hidden" name="id" value="{{$data[0]->t_id}}">
       <tbody><tr>
         <td class="label">商品类型名称:</td>
-        <td><input type="text" name="name" value="{{$data[0]->name}}" size="40">
+        <td><input type="text" name="t_name" value="{{$data[0]->t_name}}" size="40">
         <span class="require-field">*</span></td>
       </tr>
       <tr>
         <td class="label">状态:</td>
         <td>
-        @if($data[0]->status == 1)
-        <input type="radio" name="status" value="0">&nbsp;禁用&nbsp;<input type="radio" name="status" value="1" checked="">&nbsp;启用&nbsp;
+        @if($data[0]->t_status == 1)
+        <input type="radio" name="t_status" value="0">&nbsp;禁用&nbsp;<input type="radio" name="t_status" value="1" checked="">&nbsp;启用&nbsp;
         @else
-        <input type="radio" name="status" value="0" checked="">&nbsp;禁用&nbsp;<input type="radio" name="status" value="1" >&nbsp;启用&nbsp;
+        <input type="radio" name="t_status" value="0" checked="">&nbsp;禁用&nbsp;<input type="radio" name="t_status" value="1" >&nbsp;启用&nbsp;
         @endif
         </td>
 

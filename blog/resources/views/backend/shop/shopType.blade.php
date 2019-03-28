@@ -29,14 +29,14 @@
 			</tr>
       @foreach($list as $key => $val)
 			<tr>
-				<td class="first-cell"><span >{{$val->name}}</span></td>
+				<td class="first-cell"><span >{{$val->t_name}}</span></td>
 				<td></td>
-				<td align="right">{{$val->number}}</td>
+				<td align="right">{{$val->t_number}}</td>
 				<td align="center"><img src="{{asset('backends/images/yes.gif')}}"></td>
 				<td align="center">
-				  <a href="shopAttr" title="属性列表">属性列表</a> |
-				  <a href="shopTypeUpdate?id={{$val->id}}" title="编辑">编辑</a> |
-				  <a href="shopTypeDel?id={{$val->id}}" title="移除">移除</a>
+				  <a href="shopAttr?id={{$val->t_id}}" title="属性列表">属性列表</a> |
+				  <a href="shopTypeUpdate?id={{$val->t_id}}" title="编辑">编辑</a> |
+				  <a href="shopTypeDel?id={{$val->t_id}}" title="移除">移除</a>
 				</td>
 			</tr>
       @endforeach

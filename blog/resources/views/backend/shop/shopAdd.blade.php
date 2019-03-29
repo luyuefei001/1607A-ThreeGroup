@@ -213,6 +213,8 @@
 					 data: {type_id:type_id},
 					 dataType: "json",
 					 success: function (e) {
+						 //在替换之前要清空
+						 $('.box').empty();
 						 	// console.log(e)
 							$.each(e, function (key,val) { 
 								   var value = val.a_value;
@@ -222,9 +224,12 @@
 										// <option value="'+val.a_id+'">'+arr[i]+'</option>
 										 $('.box').append('<b>'+val.a_name+'</b>');	
 										 for(var i = 0; i < length; i++){
-												$('.box').append('<input type="checkbox" name="shopAttr'+val.a_id+'[]" value="'+i+'">'+arr[i]+'')
+												$('.box').append('<input type="checkbox" name="shopAttr'+val.a_id+'[]" value="'+i+'">'+arr[i]+'');
 										 }			
 										 $('.box').append('<br>')						 
+									}
+									else{
+										 $('.box').append('<b>'+val.a_name+'</b><input type="text" name="shopAttr'+val.a_id+'[]" value="'+val.a_id+'">');
 									}
 									 
 									 console.log(arr)

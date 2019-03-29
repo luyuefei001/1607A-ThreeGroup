@@ -59,6 +59,7 @@ class ShopController extends Controller
                //商品添加的时间
                $data['createDate'] = time();
                //进行添加
+               dd($data);
                if($id = DB::table('ecs_good')->insertGetId($data)){
                      //生成商品的货号
                      // print_r( 'ecs'. ($id+10000));

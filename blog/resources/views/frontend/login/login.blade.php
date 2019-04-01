@@ -21,14 +21,20 @@ $(document).ready(function() {
   });
   //验证码
   createCode();
-  
+  $('#go').on('click',function(){
+    alert(1)
+  })
 });
 </script>
 </head>
 <body>
+
 <dl class="admin_login">
+<dd>
+  <input type="button" value="不想注册点击进入商城首页" class="submit_btn" id="go"/>
+ </dd>
  <dt>
-  <strong>ThreeGroup登录管理系统</strong>
+  <strong>ThreeGroup登录系统</strong>
   <em>we are superman</em>
  </dt>
  <dd class="user_icon">
@@ -45,11 +51,12 @@ $(document).ready(function() {
   <input type="button" value="验证码核验" class="ver_btn" onClick="validate();">
  </dd>
  <dd>
-  <input type="button" value="立即登陆" class="submit_btn"/>
+  <input type="button" value="立即登陆" class="submit_btn" id="login"/>
  </dd>
  <dd>
-  <input type="button" value="没有账号请注册账号" class="submit_btn"/>
+  <input type="button" value="没有账号请注册账号" class="submit_btn" id="resister"/>
  </dd>
+ 
  <dd>
   <p>© 2015-2016 DeathGhost 版权所有</p>
   <p>陕B2-20080224-1</p>

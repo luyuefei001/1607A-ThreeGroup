@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('backend.login.login');
+    echo "禁止访问";
 });
 
 //后台路由
@@ -113,5 +113,10 @@ Route::group(['namespace'=>'Backend','prefix'=>'backend'],function(){
 
 //前台路由
 Route::group(['namespace'=>'Frontend','prefix'=>'frontend'],function(){
-    Route::resource('/','IndexController');
+    //商城首页
+    Route::get('/','IndexController@index');
+    //登录页面路由
+    Route::any('login','IndexController@login');
+     //注册页面路由
+     Route::any('register','IndexController@register');
 });

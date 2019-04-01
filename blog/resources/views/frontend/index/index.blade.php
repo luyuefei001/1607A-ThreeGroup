@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" href="{{asset('frontends/assets/img/icon.png')}}">
 
     <!-- Title -->
-    <title>Home</title>
+    <title>ThreeGroup</title>
 
     <!-- ************************* CSS Files ************************* -->
 
@@ -90,20 +90,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="currency-selector header-top-nav__item">
-                                    <div class="dropdown header-top__dropdown">
-                                        
-                                        <a class="dropdown-toggle" id="currencyID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            美元
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="currencyID">
-                                            <a class="dropdown-item" href="#">&euro; Uro</a>
-                                            <a class="dropdown-item" href="#">&pound; Pound Sterling</a>
-                                            <a class="dropdown-item" href="#">&dollar; Us Dollar</a>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div class="user-info header-top-nav__item">
                                     <div class="dropdown header-top__dropdown">
                                         <a class="dropdown-toggle" id="userID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -111,8 +97,8 @@
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="userID">
-                                            <a class="dropdown-item" href="login-register.html">注册账号</a>
-                                            <a class="dropdown-item" href="login-register.html">登录</a>
+                                            <a class="dropdown-item" href="frontend/register">注册账号</a>
+                                            <a class="dropdown-item" href="frontend/login">登录</a>
                                         </div>
                                     </div>
                                 </div>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 class IndexController extends Controller
 {
+    //商城首页
     public function index()
     {
         //获取排序钱3名 作为轮播图展示的数据
@@ -21,5 +22,23 @@ class IndexController extends Controller
         //获取最受关注的产品领域
         // dd($str);
         return view('frontend.index.index',['list1'=>$list1,'list2'=>$list2,'list3'=>$list3,'list4'=>$list4,'list5'=>$list5,'list6'=>$list6]);
+    }
+    //登录页面
+    public function login()
+    {
+        if($_POST){
+            $data = $_POST;
+            dd($data);
+        }
+        return view('frontend/login/login');
+    }
+    //注册页面
+    public function register()
+    {
+        if($_POST){
+            $data = $_POST;
+            dd($data);
+        }
+        return view('frontend/login/register');
     }
 }

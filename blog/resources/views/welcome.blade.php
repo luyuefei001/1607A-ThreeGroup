@@ -40,7 +40,9 @@
                 top: 18px;
             }
 
-            .content {
+            form {
+                width:250px;
+                height:250px;
                 text-align: center;
             }
 
@@ -65,36 +67,25 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+            
+            <form action="">
+            <h5>登录面板</h5>
+                <table>
+                    <tr>
+                        <td>账号</td>
+                        <td> <input type="text" name="user_accout"> </td>
+                    </tr>
+                    <tr>
+                        <td>密码</td>
+                        <td> <input type="password" name="user_pwd"> </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="LOGON""></td>
+                    </tr>
+                </table>
+            </form>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    @yield('content','Laravel')
-                    <!-- Laravel -->
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
     </body>
 </html>

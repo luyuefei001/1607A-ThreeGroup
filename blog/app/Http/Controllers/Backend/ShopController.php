@@ -59,7 +59,7 @@ class ShopController extends Controller
                //商品添加的时间
                $data['createDate'] = time();
                //进行添加
-               dd($data);
+               // dd($data);
                if($id = DB::table('ecs_good')->insertGetId($data)){
                      //生成商品的货号
                      // print_r( 'ecs'. ($id+10000));
@@ -67,6 +67,7 @@ class ShopController extends Controller
                      $shopNumbers = 'ecs'. (intval($id)+intval(10000));
                      //将商品的货号存储进去
                      DB::table('ecs_good')->where('shop_id',$id)->update(['shopNumbers'=>$shopNumbers]);
+                     return redirect('backend/shopList');
                      exit();
                }
                echo "商品添加失败";

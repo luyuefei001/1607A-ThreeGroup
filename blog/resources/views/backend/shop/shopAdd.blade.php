@@ -73,9 +73,11 @@
 			<tr>
 				<td class="label">上传商品封面图片：</td>
 				<td>
-					<input type="file" name="shopImg" size="35">
+					<input type="file" name="longshopImg" size="35">
 													<a href="goods.php?act=show_image&amp;img_url=images/200905/goods_img/32_G_1242110760868.jpg" target="_blank"><img src="{{asset('backends/images/yes.gif')}}" border="0"></a>
-												<br><input type="text" size="40" style="color:#aaa;"  name="shopImg">
+												<br>
+												手动添加普通图片的地址
+												<input type="text" size="40" style="color:#aaa;"  name="shopImg">
 				</td>
 			</tr>
         </tbody></table>
@@ -103,8 +105,8 @@
             <td><input type="text" name="stockWarningNumber" value="1" size="20"></td>
           </tr>
                     <tr>
-            <td class="label">加入推荐：</td>
-            <td><input type="checkbox" name="recommend" value="1" checked="checked">精品 <input type="checkbox" name="recommend" value="1" checked="checked">新品 <input type="checkbox" name="recommend" value="1" checked="checked">热销</td>
+            <td class="label">选择进入哪个榜：</td>
+            <td><input type="radio" name="recommend" value="1" checked="checked">特色榜 <input type="radio" name="recommend" value="2">新品榜 <input type="radio" name="recommend" value="3">畅销榜 <input type="radio" name="recommend" value="4">廉价榜</td>
           </tr>
           <tr id="alone_sale_1">
             <td class="label" id="alone_sale_2">上架：</td>

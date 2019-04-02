@@ -96,10 +96,20 @@
                                             我的帐号
                                             <i class="fa fa-angle-down"></i>
                                         </a>
+                                        <?php session_start() ?>
+                                        @if(empty($_SESSION['nickName']))
+                                            <div class="dropdown-menu" aria-labelledby="userID">
+                                                <a class="dropdown-item" href="frontend/register">注册账号</a>
+                                                <a class="dropdown-item" href="frontend/login">登录</a>
+                                        < /div>
+                                        @else
+                                        <?php echo $_SESSION['nickName'] ?>
                                         <div class="dropdown-menu" aria-labelledby="userID">
-                                            <a class="dropdown-item" href="frontend/register">注册账号</a>
-                                            <a class="dropdown-item" href="frontend/login">登录</a>
+                                            <a class="dropdown-item" href="frontend/register">您的个人信息</a>
+                                            <a class="dropdown-item" href="frontend/login">切换账号</a>
+                                            <a class="dropdown-item" href="frontend/sessionOut">退出登录</a>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

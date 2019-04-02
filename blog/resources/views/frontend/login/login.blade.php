@@ -21,27 +21,23 @@ $(document).ready(function() {
   });
   //验证码
   createCode();
-  $('#go').on('click',function(){
-    alert(1)
-  })
 });
 </script>
 </head>
 <body>
 
 <dl class="admin_login">
-<dd>
-  <input type="button" value="不想注册点击进入商城首页" class="submit_btn" id="go"/>
- </dd>
  <dt>
   <strong>ThreeGroup登录系统</strong>
   <em>we are superman</em>
  </dt>
+ <form action="" method="post">
+ @csrf
  <dd class="user_icon">
-  <input type="text" placeholder="账号" class="login_txtbx"/>
+  <input type="text" name="accountNumber" placeholder="账号" class="login_txtbx"/>
  </dd>
  <dd class="pwd_icon">
-  <input type="password" placeholder="密码" class="login_txtbx"/>
+  <input type="password" name="userPwd" placeholder="密码" class="login_txtbx"/>
  </dd>
  <dd class="val_icon">
   <div class="checkcode">
@@ -51,12 +47,12 @@ $(document).ready(function() {
   <input type="button" value="验证码核验" class="ver_btn" onClick="validate();">
  </dd>
  <dd>
-  <input type="button" value="立即登陆" class="submit_btn" id="login"/>
+  <input type="submit" value="立即登陆" class="submit_btn" />
  </dd>
  <dd>
-  <input type="button" value="没有账号请注册账号" class="submit_btn" id="resister"/>
+      <button class="submit_btn"> <a href="register">没有账号点击注册</a> </button>
  </dd>
- 
+ </form>
  <dd>
   <p>© 2015-2016 DeathGhost 版权所有</p>
   <p>陕B2-20080224-1</p>

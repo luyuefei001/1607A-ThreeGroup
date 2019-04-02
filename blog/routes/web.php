@@ -119,4 +119,8 @@ Route::group(['namespace'=>'Frontend','prefix'=>'frontend'],function(){
     Route::any('login','IndexController@login');
      //注册页面路由
      Route::any('register','IndexController@register');
+     //判断账号是否存在路由
+     Route::get('check','IndexController@check');
+     //退出登录路由
+     Route::get('sessionOut','IndexController@sessionOut');
 });

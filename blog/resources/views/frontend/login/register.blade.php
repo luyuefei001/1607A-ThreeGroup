@@ -22,6 +22,27 @@ $(document).ready(function() {
   //验证码
   createCode();
 });
+//判断账号是否存在
+$(document).on('blur','#accountNumber',function(){
+    var accountNumber = $(this).val();
+    var obj = $(this);
+    $.ajax({
+      type: "get",
+      url: "check",
+      data: {accountNumber:accountNumber},
+      dataType: "json",
+      success: function (e) {
+        if(e.code == 0){
+            $(obj).val('账号已存在');
+            var timeout=setTimeout(function () {
+                $(obj).val('');
+            }, 1000);
+        }
+      }
+    });
+    // console.log(accountNumber)
+})
+
 </script>
 </head>
 <body>
@@ -31,19 +52,19 @@ $(document).ready(function() {
   <strong>ThreeGroup注册系统</strong>
   <em>we are superman</em>
  </dt>
- <form action="" method="post">
+ <form action="" method="post" onsubmit="return login()">
  @csrf
  <dd class="user_icon">
-  <input type="text" name="accountNumber" placeholder="账号" class="login_txtbx"/>
+  <input type="text" name="accountNumber" placeholder="账号" class="login_txtbx" id="accountNumber"/>
  </dd>
  <dd class="pwd_icon">
-  <input type="password" name="pwd" placeholder="密码" class="login_txtbx"/>
+  <input type="password" name="userPwd" placeholder="密码" class="login_txtbx"/>
  </dd>
  <dd class="pwd_icon">
   <input type="text" name="nickName" placeholder="昵称" class="login_txtbx"/>
  </dd>
  <dd class="pwd_icon">
-  <input type="text" name="phone" placeholder="手机号码" class="login_txtbx"/>
+  <input type="text" name="userPhone" placeholder="手机号码" class="login_txtbx"/>
  </dd>
  <dd class="pwd_icon">
   <input type="email" name="email" placeholder="邮箱" class="login_txtbx"/>
@@ -64,6 +85,9 @@ $(document).ready(function() {
  </dd>
  <dd>
   <input type="submit" value="立即注册" class="submit_btn" id="register"/>
+ </dd>
+ <dd>
+      <button class="submit_btn"> <a href="login">有账号点击登录</a> </button>
  </dd>
  </form>
  <dd>

@@ -32,6 +32,10 @@ Route::group(['namespace'=>'Backend','prefix'=>'backend'],function(){
     Route::get('shopList','ShopController@shopList');
     //新商品添加  因为要在该方法中进行添加成功 所以 是any
     Route::any('shopAdd','ShopController@shopAdd');
+    //编辑商品 因为要在该方法中进行修改 所以 是any
+    Route::any('shopUpdate','ShopController@shopUpdate');
+    //删除商品分类
+    Route::any('shopDel','ShopController@shopDel');
 
     //商品分类
     Route::get('shopClassify','ShopController@shopClassify');
@@ -108,6 +112,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'backend'],function(){
     //角色管理
     Route::get('adminRole','RbacController@adminRole');
     //权限模块-----------------------------------------------------------------------------------
+    Route::get('checkAccess','CommonController@checkAccess');
 });
 
 

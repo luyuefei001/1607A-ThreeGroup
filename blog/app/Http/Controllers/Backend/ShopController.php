@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers\Backend;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-class ShopController extends Controller
+use App\Http\Controllers\Backend\CommonController;
+class ShopController extends CommonController
 {
     //商品列表
     public function shopList()

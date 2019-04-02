@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Frontend;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+
 class IndexController extends Controller
 {
     //商城首页
@@ -35,7 +36,7 @@ class IndexController extends Controller
                 //判断账号是否启用
                 $status = $data[0]->userStatus;
                 if($status == 0){
-                    header("refresh:3;url=http://127.0.0.1/1607A-ThreeGroup/blog/public/frontend");
+                    header("refresh:3;url=/frontend");
                     print('账号还在审核中,请耐心等待或联系管理员<br>三秒后自动跳转。');
                     exit();
                 }
@@ -50,7 +51,7 @@ class IndexController extends Controller
                 }
                 return redirect('frontend');         
             }
-            header("refresh:3;url=http://127.0.0.1/1607A-ThreeGroup/blog/public/frontend/register");
+            header("refresh:3;url=/frontend/register");
             print('账号不存在请注册<br>三秒后自动跳转。');
             exit();
         }
@@ -65,13 +66,13 @@ class IndexController extends Controller
             unset($data['_token']);
             //账号不能为空
             if($data['accountNumber'] == ''){
-                header("refresh:3;url=http://127.0.0.1/1607A-ThreeGroup/blog/public/frontend/register");
+                header("refresh:3;url=/frontend/register");
                 print('账号名不能为空<br>三秒后自动跳转。');
                 exit();
             }
             //密码不能为空
             if($data['userPwd'] == ''){
-                header("refresh:3;url=http://127.0.0.1/1607A-ThreeGroup/blog/public/frontend/register");
+                header("refresh:3;url=/frontend/register");
                 print('密码不能为空<br>三秒后自动跳转。');
                 exit();
             }
@@ -79,13 +80,13 @@ class IndexController extends Controller
                 //判断是什么类型的用户
                 if($data['userType'] == 1){
                     //注册的是管理员
-                    header("refresh:5;url=http://127.0.0.1/1607A-ThreeGroup/blog/public/frontend");
+                    header("refresh:5;url=/frontend");
                     print('等待审核,通过我们将回给您发送邮件<br>五秒后自动跳转。');
                     exit();
                 }
                 elseif($data['userType'] == 2){
                     //注册的是商家
-                    header("refresh:5;url=http://127.0.0.1/1607A-ThreeGroup/blog/public/frontend");
+                    header("refresh:5;url=/frontend");
                     print('欢迎您在本站注册商家,请等待本站审核,将于1-2个小时发送到您邮箱相关信息<br>五秒后自动跳转。');
                     exit();
                 }
@@ -119,8 +120,9 @@ class IndexController extends Controller
     public function sessionOut()
     {
         session_start();
-        unset($_SESSION['nickName']);
-        header("refresh:5;url=http://127.0.0.1/1607A-ThreeGroup/blog/public/frontend");
+        //清除所有的session数据
+        session_destroy();
+        header("refresh:5;url=/frontend");
         print('退出登录成功<br>五秒后自动跳转。');
     }
 }

@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-class IndexController extends Controller
+use App\Http\Controllers\Backend\CommonController;
+class IndexController extends CommonController
 {
     //模板
     public function index()
@@ -23,11 +23,6 @@ class IndexController extends Controller
     public function menu()
     {
         return view('backend.index.menu');
-    }
-   
-    public function create()
-    {
-        echo 1;
     }
 
 }

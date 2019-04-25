@@ -54,7 +54,6 @@ class CommonController extends Controller
         $url = \Request::getRequestUri();
         $url = ltrim($url,'/');
         $data = 0;
-        // die;
         //查看数据库中是否有该路由 如果有就是有权限 没有就是没有权限
         foreach ($access as $key => $value) {
             if($value->access_url == $url){

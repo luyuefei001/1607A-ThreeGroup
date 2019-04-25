@@ -33,11 +33,7 @@ class CommonController extends Controller
         $user_id = $_SESSION['user_id'];
         //通过用户id 查询 该用户的角色的id
         $role_id = DB::select("select `role_id` from `user_role` where user_id = $user_id");
-        // dd($role_id);
-        // if(!$role_id[0]->role_id){
-        //     echo "没权限";
-        //     exit();
-        // }
+
         $role_id = $role_id[0]->role_id;
        
         //通过该角色的id 查询 拥有的权限的id
@@ -74,7 +70,6 @@ class CommonController extends Controller
             print('没有权限访问该网页<br>三秒后自动跳转到商城首页。');
             exit();
         }
-        // echo "2";
        
     }
 

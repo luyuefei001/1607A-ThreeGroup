@@ -391,7 +391,7 @@
                 <div class="homepage-slider">
                     <!-- Single Slide Start -->
                     @foreach($list1 as $key => $val)
-                    <div class="single-slider content-v-center" style="background-image: url({{$val->longshopImg}})">
+                    <div id="find" class="single-slider content-v-center" style="background-image: url({{$val->longshopImg}})">
                         <div class="container">
                         
                             <div class="row">
